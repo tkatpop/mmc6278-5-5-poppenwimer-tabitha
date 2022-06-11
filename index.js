@@ -7,11 +7,11 @@ form.onsubmit = function (e){
     e.preventDefault()
 
     //accesses the input text from form
-    var inputText = document.querySelector('input').value
+    var inputTextBox = document.querySelector('input')
 
+    var inputText = inputTextBox.value
 
     //check for all spaces
-
     var spaceCount = []
 
     for (var i = 0; i < inputText.length; i++){
@@ -38,5 +38,30 @@ form.onsubmit = function (e){
     buttonEl.appendChild(newLiText);
 
     liEl.appendChild(buttonEl);
+
+    //reset input area on form
+    inputTextBox.value = ""
+
+    //Set click counter
+    var clickCounter = 0
+
+    //What to do on button click
+    buttonEl.onclick = function () {
+        
+        //Increase record of clicks
+        clickCounter++;
+
+        // Check if one click
+        if(clickCounter == 1){
+            //Add strike through
+            buttonEl.style = 'text-decoration: line-through'
+        }
+
+        //check if two clicks
+        if(clickCounter == 2){
+            //Remove button
+            todoList.removeChild(liEl)
+        }
+    }
 
 }
