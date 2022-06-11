@@ -135,7 +135,6 @@ function runTests() {
     document.querySelector('form').addEventListener('submit', function(e) {
       e.preventDefault()
     })
-
     afterEach(() => {
       list.innerHTML = ""
       input.value = ""
@@ -206,7 +205,7 @@ function runTests() {
       todos.forEach((todo, index) => {
         input.value = todo
         button.click()
-        const todos = Array.from(todoList.querySelectorAll('li button'))
+        const todos = Array.from(list.querySelectorAll('li button'))
         expect(todos.length === index + 1).to.be.true
         const lastTodo = todos.find(todoEl => todoEl.textContent === todo)
         expect(lastTodo).to.exist
@@ -224,7 +223,7 @@ function runTests() {
       todos.forEach(todo => {
         input.value = todo
         button.click()
-        todoElements = Array.from(todoList.querySelectorAll('li button'))
+        todoElements = Array.from(list.querySelectorAll('li button'))
         const lastTodo = todoElements.find(todoEl => todoEl.textContent === todo)
         expect(lastTodo).to.exist
         expect(lastTodo.textContent).to.eq(todo)
@@ -236,7 +235,7 @@ function runTests() {
       mangoEl.click()
       expect(getComputedStyle(mangoEl).textDecoration.includes('line-through')).to.be.true
       mangoEl.click()
-      todoElements = Array.from(todoList.querySelectorAll('li button'))
+      todoElements = Array.from(list.querySelectorAll('li button'))
       mangoEl = todoElements.find(todo => todo.textContent === 'mango')
       expect(mangoEl).to.not.exist
 
